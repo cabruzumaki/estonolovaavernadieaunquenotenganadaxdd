@@ -119,6 +119,8 @@ def inboxer():
             try:
                 imap.login(email, password)
                 status, messages = imap.select("inbox")
+                revisado = 0
+                revisado +=1
                 if status == "OK":
                     result, data = imap.uid("search", None, f'(TEXT "{keyword}")')
                     if result == "OK":
