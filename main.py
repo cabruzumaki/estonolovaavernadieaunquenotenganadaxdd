@@ -121,6 +121,7 @@ def inboxer():
                 status, messages = imap.select("inbox")
                 revisado = 0
                 revisado +=1
+                print(revisado)
                 if status == "OK":
                     result, data = imap.uid("search", None, f'(TEXT "{keyword}")')
                     if result == "OK":
